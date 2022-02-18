@@ -1,0 +1,4 @@
+noje js installed the following stuff that can be removed:
+- chocolatey
+- visual build tools
+- python 3.9.6
