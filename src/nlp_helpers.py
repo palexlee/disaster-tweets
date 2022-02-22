@@ -1,7 +1,27 @@
+import numpy as np
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
 STOPWORDS = stopwords.words('english')
+
+def load_glove(glove_path):
+    """Read GloVe embeddings from input path and return as a dict
+
+    Args:
+        glove_path (str): path to file containing glove
+
+    Returns:
+        embedding_dict (dict): Dict containing word, embedding pairs
+    """
+    embedding_dict={}
+    with open(glove_path,'r', encoding='utf-8') as f:
+        for line in f:
+            values=line.split()
+            word=values[0]
+            vectors=np.asarray(values[1:],'float32')
+            embedding_dict[word]=vectors
+    f.close()
+    return embedding_dict
 
 def generate_ngrams(text, n=1, tokenize=True, remove_stopwords=False):
     """Generate ngrams from input text.
